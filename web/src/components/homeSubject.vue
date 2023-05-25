@@ -11,10 +11,11 @@
 
 <script lang="ts">
 import { defineComponent, reactive ,ref} from 'vue'
-
+import {Store,useStore} from 'vuex'
 export default defineComponent({
   name:'homeSubject',
   setup() {
+    const store: Store<any> = useStore();
     const subjectList = reactive([
       {
         name:'科目1',
@@ -27,6 +28,7 @@ export default defineComponent({
     ])
     const active = ref(1)
     const chooseSubject=(val: number)=>{
+      store.dispatch('tiku/set_Subject',val)
       active.value = val
     }
     return {

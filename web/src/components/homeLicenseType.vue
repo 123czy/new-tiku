@@ -11,10 +11,11 @@
 
 <script lang="ts">
 import { defineComponent, reactive ,ref } from 'vue'
-
+import {Store,useStore} from 'vuex'
 export default defineComponent({
   name:'homeLicenseType',
   setup() {
+    const store: Store<any> = useStore();
      const licenseType = reactive([
        {
         name: 'A1',
@@ -43,6 +44,7 @@ export default defineComponent({
      ])
      const active = ref('a1')
      const chooseLicense = (val: string) =>{
+       store.dispatch('tiku/set_LicenseType',val)
        active.value = val
      }
      return {
