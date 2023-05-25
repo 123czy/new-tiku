@@ -2,7 +2,7 @@
    
     <div class="test">
       <div>我要交卷</div>
-      <div class="ft-w">4545545</div>
+      <div class="ft-w">{{licenseType}}--科目{{subject}}</div>
       <div class="clock">
         <div>
           <i class="icon iconfont icon-clock"></i>
@@ -15,12 +15,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent, } from 'vue'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 export default defineComponent({
-  // setup() {
-    
-  // },
+  setup() {
+    const store = useStore()
+    const licenseType = computed(() => store.state.tiku.licenseType)
+    const subject = computed(() => store.state.tiku.subject)
+    return {
+      licenseType,
+      subject
+    }
+  },
 })
 </script>
 

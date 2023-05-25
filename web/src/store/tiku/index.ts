@@ -3,7 +3,8 @@ import {IChooseItem,ITikuState} from '@/types'
 
 const state:IChooseItem = {
   licenseType:'c1',
-  subject:1
+  subject:1,
+  time:60
 }
 
 const mutations = {

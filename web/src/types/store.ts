@@ -2,7 +2,8 @@ import {ITikuItem} from './common'
 // 首页选中的选项
 export interface IChooseItem {
   licenseType:string,
-  subject:number
+  subject:number,
+  time:number
 }
 
 export interface ITikuState {
