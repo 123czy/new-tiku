@@ -1,12 +1,12 @@
 <template>
    
     <div class="test">
-      <div>我要交卷</div>
+      <div >我要交卷</div>
       <div class="ft-w">{{licenseType}}--科目{{subject}}</div>
       <div class="clock">
         <div>
           <i class="icon iconfont icon-clock"></i>
-          <span>44:09</span>
+          <span>{{time}}</span>
         </div>
         <i class="icon iconfont icon-more"></i>
       </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, } from 'vue'
+import { defineComponent,onMounted } from 'vue'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 export default defineComponent({
@@ -23,9 +23,20 @@ export default defineComponent({
     const store = useStore()
     const licenseType = computed(() => store.state.tiku.licenseType)
     const subject = computed(() => store.state.tiku.subject)
+    const time = computed(()=>{
+      const minutes = Math.floor(store.state.tiku.time / 60000);
+      const seconds = ((store.state.tiku.time % 60000) / 1000).toFixed(0).padStart(2, '0');
+        return `${minutes}:${seconds}`;
+    })
+    onMounted(()=>{
+      setInterval(() => {
+         store.dispatch('tiku/set_Time', 1000);
+      }, 1000);
+    })
     return {
       licenseType,
-      subject
+      subject,
+      time
     }
   },
 })

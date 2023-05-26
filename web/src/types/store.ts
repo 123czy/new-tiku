@@ -10,6 +10,7 @@ export interface ITikuState {
   subject: number;
   model: string;
   testType: string;
+  time:number;
   tikuList?: ITikuItem[];
   isTesting: boolean;
   isLoading: boolean;

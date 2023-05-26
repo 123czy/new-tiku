@@ -4,7 +4,7 @@ import {IChooseItem,ITikuState} from '@/types'
 const state:IChooseItem = {
   licenseType:'c1',
   subject:1,
-  time:60
+  time:45 * 60 * 1000 
 }
 
 const mutations = {
@@ -13,6 +13,9 @@ const mutations = {
   },
   setLicenseType(state: ITikuState, licenseType: string){
     state.licenseType = licenseType
+  },
+  setTime(state:ITikuState,time:number){
+      state.time -= time;
   }
 }
 
@@ -22,6 +25,9 @@ const actions = {
   },
   set_LicenseType({ commit }: { commit: Commit }, licenseType: string){
      commit('setSubject',licenseType)
+  },
+  set_Time({ commit }: { commit: Commit },time:number){
+    commit('setTime',time)
   }
 }
 
